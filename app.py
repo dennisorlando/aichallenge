@@ -1,12 +1,29 @@
 import logging
+from threading import Thread
 from flask import Flask, request, jsonify
-import config, indexer, rag, profiles
+from flask_cors import CORS
+import config, indexer, rag, profiles, bot
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}}) # Enable CORS for all routes
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS, PUT, DELETE'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    return response
+
+# Start the indexer
 indexer.start()
+
+# Start the Telegram bot in a background thread
+Thread(target=bot.run, daemon=True).start()
+log = logging.getLogger("app")
+log.info("Telegram bot started in background thread")
 
 
 @app.get("/health")

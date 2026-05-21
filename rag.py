@@ -4,16 +4,16 @@ import config
 log = logging.getLogger(__name__)
 
 SYSTEM_PROMPT = """\
-You are a document assistant. Answer ONLY using the CONTEXT below.
-If the context doesn't contain the answer, say: "I cannot answer this from the provided documents."
-Always cite the source filename in your answer, like [filename.txt].
-If documents contradict each other on the same fact, flag it with "⚠️ CONTRADICTION:" before answering.
-Never answer from general knowledge. Never make up facts."""
+Sei un assistente per i documenti. Rispondi UNICAMENTE utilizzando il CONTESTO fornito sotto.
+Se il contesto non contiene la risposta, dì: "Non posso rispondere a questa domanda basandomi sui documenti forniti."
+Cita sempre il nome del file sorgente nella tua risposta, come [filename.txt].
+Se i documenti si contraddicono su uno stesso fatto, segnalalo con "⚠️ CONTRADDIZIONE:" prima di rispondere.
+Non rispondere mai basandoti sulla conoscenza generale. Non inventare fatti."""
 
 
 def answer(question, history, context_docs):
     if not context_docs:
-        return "I cannot answer this from the provided documents."
+        return "Non posso rispondere a questa domanda basandomi sui documenti forniti."
 
     context = "\n\n".join(f"[{d['filename']}]\n{d['text']}" for d in context_docs)
 

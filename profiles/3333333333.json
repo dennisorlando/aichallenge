@@ -1,0 +1,40 @@
+{
+  "phone": "3333333333",
+  "name": "Mario",
+  "surname": "Rossi",
+  "birthdate": "1985-05-20",
+  "fiscal_code": "RSSMRA85E20L378K",
+  "entries": [
+    {
+      "summary": "A parent inquiring about the cost and enrollment process for a child in a municipal nursery school in Trento.",
+      "topics": [
+        "childcare costs",
+        "nursery enrollment",
+        "municipal services",
+        "Trento bureaucracy"
+      ],
+      "conversation": [
+        {
+          "role": "assistant",
+          "content": "Buongiorno, sono l'Assistente Virtuale del Comune di Trento. Come posso aiutarla oggi?"
+        },
+        {
+          "role": "user",
+          "content": "Ciao, chi sei?"
+        },
+        {
+          "role": "assistant",
+          "content": "[AGENT.txt] I am an agent to whom people can turn for summarizing documents from the municipality of Trento or for searching information. I can also help with navigating the site."
+        },
+        {
+          "role": "user",
+          "content": "Quanto costa portare mio figlio in asilo?"
+        },
+        {
+          "role": "assistant",
+          "content": "[Novita_nidi.txt] Il costo per il servizio a tempo pieno nei nidi d'infanzia è di 50 euro come anticipato nella scheda \"[Iscrizione al nido d'infanzia - accettazione del posto e pagamento](https://www.comune.trento.it/Servizi/Iscrizione-al-nido-d-infanzia-accettazione-del-posto-e-pagamento)\". Questo è l’anticipo tariffario da pagare per assicurare il posto al nido."
+        }
+      ]
+    }
+  ]
+}
