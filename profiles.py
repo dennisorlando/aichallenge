@@ -35,24 +35,25 @@ def _llm(prompt, model=None, temperature=0.2):
 
 def _extract_topics(conversation):
     """
-    Given a chat conversation, return a list of topic strings and a short
-    plain-language description of the user's situation/background.
-    Returns (topics: list[str], profile_summary: str).
+    Given a chat conversation, return a list of topic strings and a rich,
+    detailed description of the user's situation and background.
+    Returns (topics: list[str], detailed_context: str).
     """
     lines = "\n".join(
         f"{m['role'].upper()}: {m['content']}" for m in conversation
     )
     prompt = f"""\
-Leggi questa conversazione tra un utente e un assistente ed estrai:
-1. Una lista JSON di brevi stringhe di argomenti (massimo 10) che rappresentano ciò a cui l'utente
-   sembra interessato o per cui ha bisogno di aiuto. Sii specifico, ad esempio:
-   ["rinnovo permesso di soggiorno", "corsi di lingua italiana", "iscrizione università"].
-2. Una descrizione semplice di una frase della situazione/background apparente dell'utente,
-   ad esempio: "Immigrato recente che non ha familiarità con la burocrazia italiana" o
-   "Studente universitario in cerca di alloggio".
+Analizza attentamente questa conversazione tra un utente e un assistente del Comune di Trento.
+Estrai le seguenti informazioni in formato JSON:
 
-Rispondi UNICAMENTE con un JSON valido in questa esatta forma, senza testo extra:
-{{"topics": ["...", "..."], "summary": "..."}}
+1. "topics": Una lista di brevi stringhe che rappresentano gli interessi espliciti dell'utente (es. ["asili nido", "trasporti"]).
+2. "detailed_context": Una descrizione approfondita ma concisa della situazione dell'utente, dei suoi bisogni latenti, del suo ruolo (es. genitore, studente, lavoratore) e di qualsiasi dettaglio rilevante emerso (es. "Genitore interessato ai costi degli asili per il figlio", "Studente pendolare che usa la linea 5"). Includi ogni informazione che possa aiutare a capire se un futuro documento potrebbe interessargli.
+
+Rispondi UNICAMENTE con il JSON:
+{{
+  "topics": ["...", "..."],
+  "detailed_context": "..."
+}}
 
 CONVERSAZIONE:
 {lines}"""
@@ -60,7 +61,7 @@ CONVERSAZIONE:
     raw = _llm(prompt)
     raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     data = json.loads(raw)
-    return data.get("topics", []), data.get("summary", "")
+    return data.get("topics", []), data.get("detailed_context", "")
 
 
 # ── Notification mock ─────────────────────────────────────────────────────────
@@ -88,9 +89,9 @@ def _profile_path(phone):
 
 
 def save_profile(phone, name, surname, birthdate, fiscal_code, conversation):
-    log.info("[profile] extracting topics for %s %s (%s)...", name, surname, phone)
-    topics, summary = _extract_topics(conversation)
-    log.info("[profile] topics: %s", topics)
+    log.info("[profile] extracting detailed profile for %s %s (%s)...", name, surname, phone)
+    topics, detailed_context = _extract_topics(conversation)
+    log.info("[profile] topics: %s, context: %s", topics, detailed_context)
 
     path = _profile_path(phone)
     entries = []
@@ -105,15 +106,17 @@ def save_profile(phone, name, surname, birthdate, fiscal_code, conversation):
                 # Backward-compatibility: migrate old single-entry format if encountered
                 entries = [{
                     "summary": existing_data.get("summary", ""),
+                    "detailed_context": existing_data.get("summary", ""),
                     "topics": existing_data.get("topics", []),
                     "conversation": existing_data.get("conversation", [])
                 }]
         except Exception as e:
             log.warning("[profile] could not read existing profile for %s: %s", phone, e)
 
-    # Append the newly extracted topics and summary association
+    # Append the newly extracted topics and context association
     entries.append({
-        "summary": summary,
+        "summary": detailed_context, # Keep summary for backward compatibility
+        "detailed_context": detailed_context,
         "topics": topics,
         "conversation": conversation,
     })
@@ -124,15 +127,14 @@ def save_profile(phone, name, surname, birthdate, fiscal_code, conversation):
         "surname":     surname,
         "birthdate":   birthdate,
         "fiscal_code": fiscal_code,
-        "entries":     entries,  # Accumulates multiple entries safely
+        "entries":     entries,
     }
     
     path.write_text(json.dumps(profile, ensure_ascii=False, indent=2), encoding="utf-8")
     log.info("[profile] saved profile for %s (total entries: %d)", phone, len(entries))
     
-    # Return a sub-dict containing the current run's summary/topics for app.py's HTTP response
     return {
-        "summary": summary,
+        "summary": detailed_context,
         "topics": topics
     }
 
@@ -140,8 +142,6 @@ def save_profile(phone, name, surname, birthdate, fiscal_code, conversation):
 def load_all_profiles():
     """
     Loads all profiles from disk and flattens their internal entries list.
-    This ensures consumer components (like GET /profiles and compare_and_notify)
-    process each unique topic association seamlessly.
     """
     flat_profiles = []
     for f in config.PROFILES_DIR.glob("*.json"):
@@ -156,11 +156,13 @@ def load_all_profiles():
                         "birthdate":   data["birthdate"],
                         "fiscal_code": data["fiscal_code"],
                         "summary":     entry.get("summary", ""),
+                        "detailed_context": entry.get("detailed_context", entry.get("summary", "")),
                         "topics":      entry.get("topics", []),
                         "conversation": entry.get("conversation", [])
                     })
             elif "topics" in data:
-                # Legacy fallback for older unmigrated files
+                # Legacy fallback
+                data["detailed_context"] = data.get("summary", "")
                 flat_profiles.append(data)
         except Exception as e:
             log.warning("[profile] could not load %s: %s", f.name, e)
@@ -173,7 +175,7 @@ def compare_and_notify(doc_filename, doc_text):
     """
     Called in a background thread after a document is indexed.
     For each saved profile association, ask the LLM if this document is relevant
-    to the user's topics. If yes, generate a tailored message and notify.
+    to the user's situation and topics. If yes, generate a tailored message and notify.
     """
     profiles = load_all_profiles()
     if not profiles:
@@ -184,9 +186,8 @@ def compare_and_notify(doc_filename, doc_text):
 
     for p in profiles:
         topics = p.get("topics", [])
-        if not topics:
-            continue
-
+        context = p.get("detailed_context", "sconosciuto")
+        
         topics_str = ", ".join(topics)
         prompt = f"""\
 Un nuovo documento chiamato "{doc_filename}" è stato aggiunto alla base di conoscenza.
@@ -195,14 +196,14 @@ Contenuto del documento (primi 1500 caratteri):
 
 Questo utente ha il seguente profilo:
 - Nome: {p['name']} {p['surname']}
-- Background: {p.get('summary', 'sconosciuto')}
+- Situazione/Contesto: {context}
 - Argomenti di interesse: {topics_str}
 
-Domanda: Questo documento è significativamente rilevante per gli argomenti o la situazione di questo utente?
+Domanda: Questo documento è significativamente rilevante per la situazione o gli argomenti di questo utente?
+Considera sia i bisogni espliciti (topics) che quelli latenti deducibili dal contesto (situazione).
+
 Se SÌ, scrivi un breve messaggio di notifica amichevole e personalizzato (massimo 2-3 frasi)
 nella stessa lingua usata dall'utente nella conversazione, adattato al suo background.
-Ad esempio, evita il gergo tecnico per qualcuno che non ha familiarità con la burocrazia; sii conciso per un
-utente esperto.
 Se NO, rispondi solo con la parola: NO
 
 Rispondi o con "NO" o con il messaggio di notifica, nient'altro."""
@@ -210,7 +211,7 @@ Rispondi o con "NO" o con il messaggio di notifica, nient'altro."""
         result = _llm(prompt)
 
         if result.strip().upper() == "NO":
-            log.info("[notify] '%s' not relevant for %s %s (Topics: %s)", doc_filename, p['name'], p['surname'], topics_str)
+            log.info("[notify] '%s' not relevant for %s %s (Context: %s)", doc_filename, p['name'], p['surname'], context)
             continue
 
         _notify(p["phone"], f"{p['name']} {p['surname']}", result.strip())

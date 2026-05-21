@@ -1,0 +1,157 @@
+SOURCE_URL: https://www.acn.gov.it/portale/documents/20119/89583/Avviso+6_2023+Determina+proroga+termine+conclusione+progetti_signed.pdf/f52a33d0-038a-d88b-0718-44e6beab7ad6?t=1735310779694
+TITLE: F52A33D0 038A D88B 0718 44E6Beab7Ad6
+========================================================================
+
+──────────────────────────────────────── Pagina 1 ────────────────────────────────────────
+
+OGGETTO: Avviso pubblico n. 06/2023 (approvato con determina ACN prot. n. 21472 del
+08/08/2023) a valere sul PIANO NAZIONALE DI RIPRESA E RESILIENZA, Missione 1, Componente 1,
+Investimento 1.5 “Cybersecurity” - Codice d’investimento M1C1I1.5. Modifica dei termini per il
+completamento dei progetti.
+IL DIRETTORE GENERALE DELL’AGENZIA PER LA CYBERSICUREZZA NAZIONALE
+VISTO il decreto-legge 14 giugno 2021, n. 82, convertito, con modificazioni, dalla legge 4 agosto 2021,
+n. 109, recante “Disposizioni urgenti in materia di cybersicurezza, definizione dell’architettura
+nazionale di cybersicurezza e istituzione dell’Agenzia per la cybersicurezza nazionale” che ha istituito
+l’Agenzia per la Cybersicurezza Nazionale (di seguito “ACN” o “Agenzia”) e, in particolare, gli articoli 5,
+comma 2, e 7;
+VISTO il decreto legislativo 18 aprile 2016, n. 50, recante “Codice dei contratti pubblici”, poi abrogato
+dal decreto legislativo 31 marzo 2023, n. 36, recante “Codice dei contratti pubblici in attuazione
+dell'articolo 1 della legge 21 giugno 2022, n. 78, recante delega al Governo in materia di contratti
+pubblici”, con la decorrenza di cui all’articolo 226 del medesimo decreto;
+VISTO il decreto legislativo 18 maggio 2018, n. 65, recante “Attuazione della direttiva (UE) 2016/1148
+del Parlamento europeo e del Consiglio del 6 luglio 2016, recante misure per un livello comune elevato
+di sicurezza delle reti e dei sistemi informativi nell’Unione”;
+VISTO il decreto legislativo 4 settembre 2024, n. 138, recante “Recepimento della direttiva (UE)
+2022/2555, relativa a misure per un livello comune elevato di cibersicurezza nell’Unione, recante
+modifica del regolamento (UE) n. 910/2014 e della direttiva (UE) 2018/1972 e che abroga la direttiva
+(UE) 2016/1148”.
+VISTO il decreto-legge 21 settembre 2019, n. 105, convertito, con modificazioni, dalla legge 18
+novembre 2019, n. 133, recante “Disposizioni urgenti in materia di perimetro di sicurezza nazionale
+cibernetica”;
+VISTO il decreto del Presidente del Consiglio dei ministri 10 marzo 2023, con cui è stato conferito al
+Prefetto Bruno Frattasi l’incarico di Direttore generale dell’Agenzia;
+VISTO il decreto del Presidente del Consiglio dei ministri 9 dicembre 2021, n. 223, recante
+“Regolamento di organizzazione e funzionamento dell’Agenzia per la Cybersicurezza Nazionale” e, in
+particolare, l’articolo 5;
+VISTO il Piano Nazionale di Ripresa e Resilienza (PNRR) approvato con Decisione del Consiglio ECOFIN
+del 13 luglio 2021 e notificato all'Italia dal Segretariato generale del Consiglio con nota LT161/21 del
+14 luglio 2021;
+VISTO il decreto del Ministro dell’economia e delle finanze 6 agosto 2021, relativo all’assegnazione
+delle risorse in favore di ciascuna Amministrazione titolare degli interventi del PNRR e corrispondenti
+milestone e target, che individua la Presidenza del Consiglio dei ministri quale Amministrazione
+titolare della Missione 1, Componente 1, Investimento 1.5 recante “Cybersicurezza”;
+
+──────────────────────────────────────── Pagina 2 ────────────────────────────────────────
+
+VISTO l’Accordo stipulato tra l’Agenzia e il Dipartimento per la trasformazione digitale, ai sensi
+dell’articolo 5, comma 6, del d.lgs. n. 50/2016, in data 14 dicembre 2021, di cui al prot. ACN n. 896 del
+15 dicembre 2021, disciplinante lo svolgimento in collaborazione delle attività di realizzazione
+dell’“Investimento 1.5”, registrato dalla Corte dei Conti il 18 gennaio 2022 al n. 95, così come
+modificato dall’atto aggiuntivo del 14 luglio 2023 approvato con Decreto del Capo del Dipartimento
+n. 126/2023-PNRR del 3 agosto 2023, registrato dalla Corte dei Conti il 5 settembre 2023 al n. 2425 e
+dall’atto aggiuntivo del 28 marzo 2024 approvato con Decreto del Capo del Dipartimento n. 82/2024-
+PNRR del 9 aprile 2024, registrato dall’Ufficio del bilancio e per il riscontro di regolarità
+amministrativo-contabile della Presidenza del Consiglio dei Ministri, ai sensi dell’articolo 29 del
+Decreto del Presidente del Consiglio dei ministri 22 novembre 2010 concernente la disciplina
+dell'autonomia finanziaria e contabile della Presidenza del Consiglio dei ministri, con il visto semplice
+numero 1668 apposto in data 24 aprile 2024;
+VISTA la determina ACN prot. n. 25549 del 9 ottobre 2023 e le relative, successive, modifiche e
+integrazioni con cui è stato adottato il modello organizzativo dell’Agenzia per la Cybersicurezza
+Nazionale per l’attuazione dell'Investimento 1.5 recante "Cybersicurezza Missione 1, Componente 1,
+del PNRR in qualità di soggetto attuatore investimento individuato dal Dipartimento per la
+Trasformazione Digitale. Modifica determinazioni direttoriali prot. n. 1776/2022 e prot. n.
+12011/2022”;
+VISTA la determina prot. n. 21472 del 08/08/2023 con la quale è stato approvato l’Avviso pubblico n.
+06/2023 avente ad oggetto “Avviso Pubblico a sportello per la presentazione di proposte di interventi
+volti all’attivazione e al potenziamento di CSIRT Regionali per il rafforzamento delle capacità di
+prevenzione, gestione e risposta degli incidenti informatici” a valere sul Piano Nazionale di Ripresa e
+Resilienza, Missione 1 – Componente 1 – Investimento 1.5 “Cybersecurity” – Codice d’investimento
+M1C1I1.5" - con un importo stanziato pari a euro 28.000.000,00 (ventottomilioni/00);
+VISTA la determina prot. n. 30697 del 30/11/2023, con la quale è stata approvata la graduatoria
+definitiva delle proposte progettuali presentate a valere sul citato Avviso 06/2023 e contestualmente
+è stato rifinanziato l’Avviso destinando l’importo complessivo di euro 28.490.306,51
+(ventottomilioniquattrocentonovantamilatrecentosei/51), a valere sul Piano Nazionale di Ripresa e
+Resilienza – Missione 1- Componente 1 – Investimento 1.5 “Cybersecurity”, alla realizzazione delle
+proposte progettuali ammesse al finanziamento a valere sull’Avviso in oggetto;
+VISTA la nota prot. ACN n. 10326 del 3 aprile 2024 recante i termini per il completamento dei progetti
+e consuntivazione contributo M&T;
+VISTA la determina prot. ACN n. 25770 del 6 agosto 2024 recante l’aggiornamento del circuito
+finanziario e la modifica del paragrafo 5.1 “Modalità di erogazione del contributo e rendicontazione
+delle spese” per l’Avviso 01/2022, l’Avviso 03/2022 e l’Avviso 06/2023;
+TENUTO CONTO che la Milestone europea da perseguire in relazione all’Investimento 1.5 è la
+seguente:
+o M1C1-20 (Milestone UE) “Dispiego integrale dei servizi nazionali di cybersecurity” entro
+dicembre 2024”;
+VISTO il paragrafo 4.3 dell’Avviso n. 06/2023 che individua, nel caso in cui il progetto presentato
+preveda lo svolgimento di una o più delle attività di cui ai punti 1), 2) e 3) del paragrafo 4.1 il termine
+
+──────────────────────────────────────── Pagina 3 ────────────────────────────────────────
+
+del 31 dicembre 2024 per lo svolgimento di tutti gli adempimenti connessi alla rendicontazione dei
+progetti.
+VISTO altresì, il paragrafo 5.1 dell’Avviso n. 06/2023 che prevede “l’erogazione a saldo previa
+presentazione della Domanda di rimborso saldo finale, a seguito del completamento dell’intervento e
+del comprovato conseguimento del target, relativamente alla quota parte di competenza del progetto,
+entro la relativa scadenza concordata con l’Unione europea (dicembre 2024) oppure entro dicembre
+2025 nell’ipotesi di svolgimento di attività di cui al punto 4)” del paragrafo 4.1 dell’Avviso stesso”;
+VISTO il paragrafo 1.2 del menzionato Avviso Pubblico n. 06/2023 ai sensi del quale “la
+rendicontazione di Milestone e Target non è necessariamente legata all’avanzamento finanziario del
+Progetto” e che, conseguentemente, le attività amministrative e rendicontazione finanziaria delle
+spese sostenute non rilevano ai fini del conseguimento del target;
+TENUTO CONTO che con citata nota prot. ACN n. 10326 del 03 aprile 2024 è stato chiarito che “(…)
+rispetto al termine del 31/12/2024 di rendicontazione di cui ai paragrafi 4.3 e 5.1 dell’Avviso in oggetto,
+la tempistica di conclusione e rendicontazione degli interventi è da intendersi termine ultimo delle
+attività di consuntivazione dei contributi a milestone e target. Diversamente, limitatamente agli
+adempimenti connessi ai flussi finanziari e rendicontazione
+finanziaria degli stessi, laddove debitamente motivate, potranno essere valutate dalla Scrivente
+eventuali proroghe”;
+CONSIDERATO che, ai fini del contributo alla Milestone (UE) M1C1-20 entro il T4 è richiesta la piena
+operatività dei rispettivi CSIRT oggetto degli interventi;
+RILEVATO che tutti i progetti finanziati dall’Avviso n. 06/2023 risultano in linea con le finalità di cui al
+target M1C1-20 dell’Investimento 1.5;
+RILEVATO altresì, che, ai fini del conseguimento della Milestone (UE) M1C1-20, è oggetto di
+consuntivazione una selezione di progetti previsti e già individuati dall’Agenzia nell’ambito del
+menzionato Avviso Pubblico;
+RAVVISATA, pertanto, l’opportunità di prorogare, previa valutazione positiva da parte dell’Agenzia di
+una specifica richiesta di modifica progettuale, il termine di conclusione dei progetti, fermo restando
+il suddetto allineamento alle finalità dell’Investimento 1.5;
+RITENUTO, quindi, di dover modificare il paragrafo 4.3 dell’Avviso n. 06/2023 sostituendo le parole da
+“Pena la revoca del contributo” a “sulla base del cronoprogramma presentato” con le seguenti:
+“Nel caso in cui il progetto presentato preveda lo svolgimento di una o più delle attività di cui
+ai punti 1), 2) e 3), pena la revoca del contributo e il recupero da parte della scrivente
+Amministrazione delle somme eventualmente anticipate, i progetti - e quindi i relativi
+interventi ammessi a finanziamento - dovranno concludersi non oltre la data del 31 dicembre
+2025 previa valutazione e relativa autorizzazione da parte dell’Agenzia, fermo restando la
+piena operatività dello CSIRT al 31 dicembre 2024.”;
+RITENUTO, conseguentemente, di dover contestualmente modificare il paragrafo 5.1 dell’Avviso n.
+06/2023, sostituendo le parole da “Erogazione a saldo” a “con l’Unione europea (dicembre 2024)” con
+le seguenti:
+
+──────────────────────────────────────── Pagina 4 ────────────────────────────────────────
+
+“Erogazione a saldo previa presentazione della Domanda di rimborso saldo finale a seguito
+del completamento dell’intervento e del comprovato allineamento alle finalità
+dell’Investimento 1.5 e alla Milestone (UE) M1C1-20, relativamente alla quota parte di
+competenza del progetto entro il termine del 31 dicembre 2025”.
+Per le motivazioni sopra riportate,
+DETERMINA
+1. DI MODIFICARE il paragrafo 4.3 dell’Avviso n. 06/2023 sostituendo le parole da “Pena la revoca del
+contributo” a “sulla base del cronoprogramma presentato” con le seguenti:
+“Nel caso in cui il progetto presentato preveda lo svolgimento di una o più delle attività di cui
+ai punti 1), 2) e 3), pena la revoca del contributo e il recupero da parte della scrivente
+Amministrazione delle somme eventualmente anticipate, i progetti - e quindi i relativi
+interventi ammessi a finanziamento - dovranno concludersi non oltre la data del 31 dicembre
+2025 previa valutazione e relativa autorizzazione da parte dell’Agenzia, fermo restando la
+piena operatività dello CSIRT al 31 dicembre 2024”;
+2. DI MODIFICARE il paragrafo 5.1 dell’Avviso n. 06/2023, sostituendo le parole da “Erogazione a saldo”
+a “con l’Unione europea (dicembre 2024)” con le seguenti:
+“Erogazione a saldo previa presentazione della Domanda di rimborso saldo finale a seguito
+del completamento dell’intervento e del comprovato allineamento alle finalità
+dell’Investimento 1.5 e alla Milestone (UE) M1C1-20, relativamente alla quota parte di
+competenza del progetto entro il termine del 31 dicembre 2025”.
+3. DI DISPORRE la notifica della presente determina ai Soggetti Attuatori interessati nonché la sua
+pubblicazione sul sito istituzionale dell’Agenzia per la Cybersicurezza Nazionale (acn.gov.it) e il relativo
+riferimento sul sito di Italia Domani (italiadomani.gov.it).
+Roma,
+IL DIRETTORE GENERALE
+(Bruno Frattasi)

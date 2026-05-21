@@ -4,7 +4,7 @@ OLLAMA_BASE_URL = "http://localhost:11434"
 EMBEDDING_MODEL = "embeddinggemma"
 
 # Models for different tasks
-CHAT_MODEL      = "granite4.1:3b" # granite4.1:3b (using 3.1-dense:2b as a safer available alternative for now, but user requested 4.1:3b)
+CHAT_MODEL      = "gemma4:e4b" # granite4.1:3b (using 3.1-dense:2b as a safer available alternative for now, but user requested 4.1:3b)
 COMPARE_MODEL   = "gemma4:e4b"
 
 DOCUMENTS_DIR  = Path("documents")
