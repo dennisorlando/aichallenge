@@ -1,0 +1,1 @@
+Hello world! the answer is 42. But if there is a number 6 is provided,
