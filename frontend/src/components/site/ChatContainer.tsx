@@ -97,21 +97,6 @@ export function ChatContainer() {
         </div>
         <DownloadAppButton conversation={messages} />
       </div>
-
-      {/* Suggestions */}
-      {messages.length <= 1 && (
-        <div className="px-6 pt-5">
-          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-            Domande frequenti
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {suggestions.map((s) => (
-              <SuggestedPromptCard key={s.label} icon={s.icon} label={s.label} onClick={() => send(s.label)} />
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-6 space-y-5">
         {messages.map((m) => <MessageBubble key={m.id} message={m} />)}

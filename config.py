@@ -13,7 +13,7 @@ PROFILES_DIR   = Path("profiles")    # one JSON per phone number
 
 SCAN_INTERVAL   = 2   # seconds
 TOP_K           = 5
-SCORE_THRESHOLD = 0.3
+SCORE_THRESHOLD = 0.5
 PORT            = 5000
 
 SUPPORTED_EXT = {".txt", ".md", ".rst", ".csv", ".json", ".html", ".xml", ".py", ".yaml", ".toml"}

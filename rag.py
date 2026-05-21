@@ -25,7 +25,8 @@ def answer(question, history, context_docs):
              config.CHAT_MODEL, len(context_docs), len(history))
     r = requests.post(f"{config.OLLAMA_BASE_URL}/api/chat",
                       json={"model": config.CHAT_MODEL, "messages": messages,
-                            "stream": False, "options": {"temperature": 0.1}},
+                            "stream": False, 
+                            "options": {"temperature": 0.1, "num_ctx": 4096}},
                       timeout=120)
     r.raise_for_status()
     return r.json()["message"]["content"]

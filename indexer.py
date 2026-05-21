@@ -32,20 +32,50 @@ def _load_existing():
     log.info("Loaded %d existing embeddings", len(_indexed))
 
 
+def _chunk_text(text, size=1500, overlap=300):
+    if not text:
+        return []
+    chunks = []
+    start = 0
+    while start < len(text):
+        end = start + size
+        chunk = text[start:end]
+        chunks.append(chunk)
+        if end >= len(text):
+            break
+        start += (size - overlap)
+    return chunks
+
+
 def _index_file(path):
     path_str = str(path.resolve())
     log.info("[index] reading %s", path.name)
     text = path.read_text(encoding="utf-8", errors="replace")
-    log.info("[index] read %d chars, embedding...", len(text))
-    emb = _embed(text)
-    h = _hash(path)
-    out = {"source": path_str, "filename": path.name,
-           "file_hash": h, "text": text, "embedding": emb}
-    (config.EMBEDDINGS_DIR / f"{h}.json").write_text(json.dumps(out))
-    _indexed[path_str] = h
-    log.info("[index] done: %s", path.name)
+    
+    # Remove old chunks if they exist
+    _remove_file(path_str)
 
-    # After indexing, check profiles in a separate thread so we don't block the scanner
+    chunks = _chunk_text(text)
+    log.info("[index] %s: split into %d chunks", path.name, len(chunks))
+    
+    h = _hash(path)
+    for i, chunk_text in enumerate(chunks):
+        emb = _embed(chunk_text)
+        chunk_data = {
+            "source": path_str,
+            "filename": path.name,
+            "file_hash": h,
+            "chunk_index": i,
+            "text": chunk_text,
+            "embedding": emb
+        }
+        chunk_file = config.EMBEDDINGS_DIR / f"{h}_{i}.json"
+        chunk_file.write_text(json.dumps(chunk_data))
+    
+    _indexed[path_str] = h
+    log.info("[index] done: %s (%d chunks)", path.name, len(chunks))
+
+    # After indexing, check profiles in a separate thread
     threading.Thread(
         target=_run_profile_comparison,
         args=(path.name, text),
@@ -65,7 +95,9 @@ def _run_profile_comparison(filename, text):
 def _remove_file(path_str):
     h = _indexed.pop(path_str, None)
     if h:
-        (config.EMBEDDINGS_DIR / f"{h}.json").unlink(missing_ok=True)
+        # Remove all chunks for this file hash
+        for f in config.EMBEDDINGS_DIR.glob(f"{h}_*.json"):
+            f.unlink(missing_ok=True)
     log.info("[index] removed: %s", path_str)
 
 
@@ -79,7 +111,11 @@ def scan():
 
     for path_str in found:
         path = Path(path_str)
-        h = _hash(path)
+        try:
+            h = _hash(path)
+        except Exception:
+            continue
+            
         if _indexed.get(path_str) == h:
             continue
         try:
@@ -97,9 +133,18 @@ def query(question):
         try:
             d = json.loads(f.read_text())
             emb = d["embedding"]
+            # cosine similarity
             dot = sum(a*b for a,b in zip(q_emb, emb))
-            score = dot / (math.sqrt(sum(a*a for a in q_emb)) * math.sqrt(sum(b*b for b in emb)))
-            results.append({"text": d["text"], "filename": d["filename"], "score": score})
+            na = math.sqrt(sum(a*a for a in q_emb))
+            nb = math.sqrt(sum(b*b for b in emb))
+            score = dot / (na * nb) if na and nb else 0.0
+            
+            results.append({
+                "text": d["text"], 
+                "filename": d["filename"], 
+                "score": score,
+                "chunk_index": d.get("chunk_index", 0)
+            })
         except Exception:
             pass
 
