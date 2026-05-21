@@ -4,7 +4,7 @@ import requests
 # ─────────────────────────────────────────────
 #  CONFIGURATION — paste your token here
 # ─────────────────────────────────────────────
-BOT_TOKEN = "8943691629:AAFlOeM3NfiiVhrXk1SuZTqVre1T1NqKuUE"
+BOT_TOKEN = 
 # ─────────────────────────────────────────────
 
 BASE_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
