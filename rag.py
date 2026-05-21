@@ -15,16 +15,14 @@ def answer(question, history, context_docs):
     if not context_docs:
         return "I cannot answer this from the provided documents."
 
-    context = "\n\n".join(
-        f"[{d['filename']}]\n{d['text']}" for d in context_docs
-    )
+    context = "\n\n".join(f"[{d['filename']}]\n{d['text']}" for d in context_docs)
 
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-    messages += history[-(10*2):]  # keep last 10 turns
-    messages.append({"role": "user", "content":
-        f"CONTEXT:\n{context}\n\nQUESTION: {question}"})
+    messages += history[-20:]   # last 10 turns (user+assistant = 2 each)
+    messages.append({"role": "user", "content": f"CONTEXT:\n{context}\n\nQUESTION: {question}"})
 
-    log.info("[rag] calling %s with %d context docs", config.CHAT_MODEL, len(context_docs))
+    log.info("[rag] calling %s with %d context docs, %d history msgs",
+             config.CHAT_MODEL, len(context_docs), len(history))
     r = requests.post(f"{config.OLLAMA_BASE_URL}/api/chat",
                       json={"model": config.CHAT_MODEL, "messages": messages,
                             "stream": False, "options": {"temperature": 0.1}},

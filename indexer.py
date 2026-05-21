@@ -1,8 +1,10 @@
-import hashlib, json, logging, threading, requests
+import hashlib, json, logging, math, threading, requests
 from pathlib import Path
 import config
 
 log = logging.getLogger(__name__)
+
+_indexed = {}   # path_str -> file_hash
 
 
 def _embed(text):
@@ -18,10 +20,6 @@ def _embed(text):
 
 def _hash(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-# path_str -> file_hash, populated from disk on startup
-_indexed = {}
 
 
 def _load_existing():
@@ -46,6 +44,22 @@ def _index_file(path):
     (config.EMBEDDINGS_DIR / f"{h}.json").write_text(json.dumps(out))
     _indexed[path_str] = h
     log.info("[index] done: %s", path.name)
+
+    # After indexing, check profiles in a separate thread so we don't block the scanner
+    threading.Thread(
+        target=_run_profile_comparison,
+        args=(path.name, text),
+        daemon=True,
+        name=f"notify-{path.name}"
+    ).start()
+
+
+def _run_profile_comparison(filename, text):
+    try:
+        import profiles
+        profiles.compare_and_notify(filename, text)
+    except Exception as e:
+        log.error("[notify] error during profile comparison: %s", e)
 
 
 def _remove_file(path_str):
@@ -75,7 +89,6 @@ def scan():
 
 
 def query(question):
-    import math
     log.info("[query] embedding question...")
     q_emb = _embed(question)
 
